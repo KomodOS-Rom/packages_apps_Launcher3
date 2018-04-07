@@ -29,6 +29,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.SwitchPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
@@ -49,6 +50,7 @@ public class SettingsIcons extends SettingsActivity implements PreferenceFragmen
 
     private static final String ICON_BADGING_PREFERENCE_KEY = "pref_icon_badging";
     static final String KEY_PREF_LEGACY_ICON_MASK = "pref_legacy_icon_mask";
+    static final String KEY_GENERATED_ADAPTIVE_BACKGROUND = "pref_generated_adaptive_background";
 
     /** Hidden field Settings.Secure.NOTIFICATION_BADGING */
     public static final String NOTIFICATION_BADGING = "notification_badging";
@@ -128,6 +130,24 @@ public class SettingsIcons extends SettingsActivity implements PreferenceFragmen
                     return true;
                 }
             });
+
+            final SwitchPreference legacyIconMaskPref =
+                    (SwitchPreference) findPreference(KEY_PREF_LEGACY_ICON_MASK);
+            final SwitchPreference generateAdaptiveBackgroundPref =
+                    (SwitchPreference) findPreference(KEY_GENERATED_ADAPTIVE_BACKGROUND);
+            if (!Utilities.ATLEAST_OREO) {
+                getPreferenceScreen().removePreference(legacyIconMaskPref);
+                getPreferenceScreen().removePreference(generateAdaptiveBackgroundPref);
+            } else {
+                generateAdaptiveBackgroundPref.setEnabled(legacyIconMaskPref.isChecked());
+                legacyIconMaskPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                    public boolean onPreferenceChange(Preference preference, Object newValue) {
+                        generateAdaptiveBackgroundPref.setEnabled((Boolean) newValue);
+                        return true;
+                    }
+                });
+            }
+
         }
 
         @Override

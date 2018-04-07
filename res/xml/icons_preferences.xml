@@ -49,6 +49,13 @@
             android:defaultValue="false"
             android:persistent="true"/>
 
+        <SwitchPreference
+            android:key="pref_generated_adaptive_background"
+            android:title="@string/generate_adaptive_background_title"
+            android:summary="@string/generate_adaptive_background_summary"
+            android:defaultValue="false"
+            android:persistent="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -2619,7 +2619,9 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
             }
             LauncherAppState.getInstanceNoCreate().setNeedsRestart();
         }
-        if ("pref_iconPackPackage".equals(key) || SettingsIcons.KEY_PREF_LEGACY_ICON_MASK.equals(key)) {
+        if ("pref_iconPackPackage".equals(key) ||
+             SettingsIcons.KEY_PREF_LEGACY_ICON_MASK.equals(key) ||
+             SettingsIcons.KEY_GENERATED_ADAPTIVE_BACKGROUND.equals(key)) {
             mModel.clearIconCache();
             mModel.forceReload();
         }
