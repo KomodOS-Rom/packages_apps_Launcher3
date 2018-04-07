@@ -29,10 +29,14 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.icu.text.DateFormat;
 import android.icu.text.DisplayContext;
 import android.os.Build;
@@ -42,6 +46,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.TransactionTooLargeException;
+import android.support.v7.graphics.Palette;
 import android.text.format.DateUtils;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -204,6 +209,11 @@ public final class Utilities {
         return prefs.getBoolean(SettingsIcons.KEY_PREF_LEGACY_ICON_MASK, false);
     }
 
+    public static boolean generateAdaptiveBackground(Context context) {
+        SharedPreferences prefs = getPrefs(context.getApplicationContext());
+        return prefs.getBoolean(SettingsIcons.KEY_GENERATED_ADAPTIVE_BACKGROUND, false);
+    }
+
     public static boolean showWorkspaceGradient(Context context) {
         return getPrefs(context).getBoolean(SHOW_WORKSPACE_GRADIENT, true);
     }
@@ -324,6 +334,59 @@ public final class Utilities {
                 break;
         }
         return amountsp;
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap;
+
+        try {
+            if (drawable instanceof BitmapDrawable) {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                if (bitmapDrawable.getBitmap() != null) {
+                    return bitmapDrawable.getBitmap();
+                }
+            }
+
+            if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+                bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+            } else {
+                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            }
+
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+        } catch (Throwable t) {
+            bitmap = null;
+        }
+        return bitmap;
+    }
+
+    public static int extractAdaptiveBackgroundFromBitmap(Bitmap bitmap) {
+        int background;
+        try {
+            Palette palette = Palette.from(bitmap).generate();
+            if (palette.getDarkMutedSwatch() != null) {
+                background = palette.getDarkMutedSwatch().getRgb();
+            } else if (palette.getLightMutedSwatch() != null) {
+                background = palette.getLightMutedSwatch().getRgb();
+            } else if (palette.getMutedSwatch() != null) {
+                background = palette.getMutedSwatch().getRgb();
+            } else if (palette.getDarkVibrantSwatch() != null) {
+                background = palette.getDarkVibrantSwatch().getRgb();
+            } else if (palette.getLightVibrantSwatch() != null) {
+                background = palette.getLightVibrantSwatch().getRgb();
+            } else if (palette.getVibrantSwatch() != null) {
+                background = palette.getVibrantSwatch().getRgb();
+            } else if (palette.getDominantSwatch() != null) {
+                background = palette.getDominantSwatch().getRgb();
+            } else {
+                background = Color.WHITE;
+            }
+        } catch (Throwable t) {
+            background = Color.WHITE;
+        }
+        return background;
     }
 
     public static String formatDateTime(Context context, long timeInMillis) {

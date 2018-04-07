@@ -265,7 +265,14 @@ public class LauncherIcons implements AutoCloseable {
                 icon = dr;
                 scale = getNormalizer().getScale(icon, outIconBounds, null, null);
 
-                ((ColorDrawable) dr.getBackground()).setColor(mWrapperBackgroundColor);
+                Drawable background = dr.getBackground();
+                if (Utilities.generateAdaptiveBackground(mContext)) {
+                    Bitmap bitmap = Utilities.drawableToBitmap(dr.getForeground());
+                    background.setTint(Utilities.extractAdaptiveBackgroundFromBitmap(bitmap));
+                } else {
+                    ((ColorDrawable)background).setColor(mWrapperBackgroundColor);
+                }
+
             }
         } else {
             scale = getNormalizer().getScale(icon, outIconBounds, null, null);
