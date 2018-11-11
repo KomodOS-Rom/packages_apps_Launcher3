@@ -2623,6 +2623,7 @@ public class Launcher extends BaseDraggingActivity implements LauncherExterns,
              SettingsIcons.KEY_PREF_LEGACY_ICON_MASK.equals(key) ||
              SettingsIcons.KEY_ICON_SHAPE_BG_COLOR.equals(key)) {
             mModel.clearIconCache();
+            mModel.setIconPack();
             mModel.forceReload();
         }
         if (KEY_HOMESCREEN_DT_GESTURES.equals(key)) {
