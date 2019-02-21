@@ -228,6 +228,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- Quickspace text color -->
     <string name="quickspace_text_color">At a Glance text color</string>
+    <string name="quickspace_text_color_auto">Automatic</string>
     <string name="quickspace_text_color_light">Light</string>
     <string name="quickspace_text_color_dark">Dark</string>
     <string name="quickspace_text_color_accent">Accent</string>

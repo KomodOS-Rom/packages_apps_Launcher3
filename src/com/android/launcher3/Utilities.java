@@ -328,7 +328,7 @@ public final class Utilities {
     }
 
     public static String getQuickspaceColor(Context context) {
-        return getPrefs(context).getString(PREF_QUICKSPACE_COLOR, "white");
+        return getPrefs(context).getString(PREF_QUICKSPACE_COLOR, "auto");
     }
 
     public static String formatDateTime(Context context, long timeInMillis) {

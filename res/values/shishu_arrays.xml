@@ -200,11 +200,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <!-- At a glance color options -->
     <string-array name="quickspace_text_color_names" translatable="false">
+        <item>@string/quickspace_text_color_auto</item>
         <item>@string/quickspace_text_color_light</item>
         <item>@string/quickspace_text_color_dark</item>
         <item>@string/quickspace_text_color_accent</item>
     </string-array>
     <string-array name="quickspace_text_color_values" translatable="false">
+        <item>auto</item>
         <item>light</item>
         <item>dark</item>
         <item>accent</item>

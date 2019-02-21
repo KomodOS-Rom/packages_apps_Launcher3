@@ -331,6 +331,9 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
         int color;
         int accentcolor = getContext().getColor(R.color.qsb_icons_accent);
         switch (Utilities.getQuickspaceColor(getContext())) {
+            case "auto":
+                color = ColorStateList.valueOf(Themes.getAttrColor(getContext(), R.attr.workspaceTextColor));
+                break;
             case "light":
                 color = Color.WHITE;
                 break;
@@ -341,7 +344,7 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                 color = accentcolor;
                 break;
             default:
-                color = Color.WHITE;
+                color = ColorStateList.valueOf(Themes.getAttrColor(getContext(), R.attr.workspaceTextColor));
                 break;
         }
 
