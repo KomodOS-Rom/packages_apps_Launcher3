@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint.FontMetrics;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -326,11 +327,30 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                 tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/GoogleSans-Regular.ttf");
                 break;
         }
+
+        int color;
+        int accentcolor = getContext().getColor(R.color.qsb_icons_accent);
+        switch (Utilities.getQuickspaceColor(getContext())) {
+            case "light":
+                color = Color.WHITE;
+                break;
+            case "dark":
+                color = Color.BLACK;
+                break;
+            case "accent":
+                color = accentcolor;
+                break;
+            default:
+                color = Color.WHITE;
+                break;
+        }
+
         for (TextView view : views) {
             if (view != null) {
                 view.setTypeface(tf);
                 view.setAllCaps(Utilities.isDateStyleUppercase(getContext()));
                 view.setLetterSpacing(Utilities.getDateStyleTextSpacing(getContext()));
+                view.setTextColor(color);
             }
         }
     }

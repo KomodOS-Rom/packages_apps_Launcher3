@@ -226,4 +226,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="search_bar_hint_title">Show search bar hint text</string>
     <string name="search_bar_hint_summary">Show a small text on search bar hinting about what you can do</string>
 
+    <!-- Quickspace text color -->
+    <string name="quickspace_text_color">At a Glance text color</string>
+    <string name="quickspace_text_color_light">Light</string>
+    <string name="quickspace_text_color_dark">Dark</string>
+    <string name="quickspace_text_color_accent">Accent</string>
+
 </resources>

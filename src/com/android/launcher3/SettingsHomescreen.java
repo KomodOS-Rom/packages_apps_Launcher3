@@ -228,6 +228,15 @@ public class SettingsHomescreen extends SettingsActivity implements PreferenceFr
                     return true;
                 }
             });
+
+            ListPreference quickspaceColor = (ListPreference) findPreference(Utilities.PREF_QUICKSPACE_COLOR);
+            quickspaceColor.setSummary(quickspaceColor.getEntry());
+            quickspaceColor.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                    return true;
+                }
+            });
         }
 
         @Override
