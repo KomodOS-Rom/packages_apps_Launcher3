@@ -82,7 +82,7 @@
         android:entries="@array/quickspace_text_color_names"
         android:entryValues="@array/quickspace_text_color_values"
         android:key="pref_quickspace_text_color"
-        android:defaultValue="light"
+        android:defaultValue="auto"
         android:persistent="true"
         android:summary="%s"
         android:title="@string/quickspace_text_color" />
