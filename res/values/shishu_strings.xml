@@ -233,4 +233,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <string name="quickspace_text_color_dark">Dark</string>
     <string name="quickspace_text_color_accent">Accent</string>
 
+    <!-- Quickspace bg? -->
+    <string name="quickspace_text_background_title">At a Glance background</string>
+    <string name="quickspace_bg_none">None</string>
+    <string name="quickspace_bg_lighter">Lighter</string>
+    <string name="quickspace_bg_light">@string/quickspace_text_color_light</string>
+    <string name="quickspace_bg_dark">@string/quickspace_text_color_dark</string>
+    <string name="quickspace_bg_darker">Darker</string>
+    <string name="quickspace_bg_systemtheme">System Theme</string>
+
 </resources>

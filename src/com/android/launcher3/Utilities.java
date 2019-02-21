@@ -163,6 +163,7 @@ public final class Utilities {
     public static final String PREF_ALLAPPS_LONG_LABELS = "pref_allapps_long_labels";
     public static final String LOCK_DESKTOP_KEY = "pref_lock_desktop";
     public static final String PREF_QUICKSPACE_COLOR = "pref_quickspace_text_color";
+    public static final String PREF_QUICKSPACE_BG = "pref_quickspace_background";
 
     public static boolean isDesktopLocked(Context context) {
         return getPrefs(context).getBoolean(LOCK_DESKTOP_KEY, false);
@@ -329,6 +330,10 @@ public final class Utilities {
 
     public static String getQuickspaceColor(Context context) {
         return getPrefs(context).getString(PREF_QUICKSPACE_COLOR, "auto");
+    }
+
+    public static String getQuickspaceBackground(Context context) {
+        return getPrefs(context).getString(PREF_QUICKSPACE_BG, "none");
     }
 
     public static String formatDateTime(Context context, long timeInMillis) {

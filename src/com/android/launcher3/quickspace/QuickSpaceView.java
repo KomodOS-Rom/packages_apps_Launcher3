@@ -142,7 +142,11 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
         if (forced) {
             mClockView.reloadDateFormat();
         }
-        mTitleSeparator.setVisibility(mWeatherAvailable ? View.VISIBLE : View.GONE);
+        if (Utilities.getQuickspaceBackground(getContext()) == "none") {
+            mTitleSeparator.setVisibility(View.INVISIBLE);
+        } else {
+            mTitleSeparator.setVisibility(mWeatherAvailable ?  View.VISIBLE : View.GONE);
+        }
     }
 
     public final void bindWeather(View container, TextView title, ImageView icon) {
@@ -348,12 +352,38 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                 break;
         }
 
+        String bgDrawable;
+        switch (Utilities.getQuickspaceBackground(getContext())) {
+            case "none":
+                bgDrawable = "0";
+                break;
+            case "lighter":
+                bgDrawable = "R.drawable.glance_bg_lighter";
+                break;
+            case "light":
+                bgDrawable = "R.drawable.glance_bg_light";
+                break;
+            case "dark":
+                bgDrawable = "R.drawable.glance_bg_dark";
+                break;
+            case "darker":
+                bgDrawable = "R.drawable.glance_bg_darker";
+                break;
+            case "theme":
+                bgDrawable = "R.drawable.glance_bg_systemtheme";
+                break;
+            default:
+                color = ColorStateList.valueOf(Themes.getAttrColor(getContext(), R.attr.workspaceTextColor));
+                break;
+        }
+
         for (TextView view : views) {
             if (view != null) {
                 view.setTypeface(tf);
                 view.setAllCaps(Utilities.isDateStyleUppercase(getContext()));
                 view.setLetterSpacing(Utilities.getDateStyleTextSpacing(getContext()));
                 view.setTextColor(color);
+                view.setBackgroundResource(bgDrawable);
             }
         }
     }

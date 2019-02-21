@@ -87,6 +87,16 @@
         android:summary="%s"
         android:title="@string/quickspace_text_color" />
 
+    <ListPreference
+        android:dependency="pref_show_quickspace"
+        android:entries="@array/quickspace_background_names"
+        android:entryValues="@array/quickspace_background_values"
+        android:key="pref_quickspace_background"
+        android:defaultValue="none"
+        android:persistent="true"
+        android:summary="%s"
+        android:title="@string/quickspace_text_background_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

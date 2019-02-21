@@ -211,4 +211,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <item>dark</item>
         <item>accent</item>
     </string-array>
+
+    <!-- At a glance background options -->
+    <string-array name="quickspace_background_names" translatable="false">
+        <item>@string/quickspace_bg_none</item>
+        <item>@string/quickspace_bg_lighter</item>
+        <item>@string/quickspace_bg_light</item>
+        <item>@string/quickspace_bg_dark</item>
+        <item>@string/quickspace_bg_darker</item>
+        <item>@string/quickspace_bg_systemtheme</item>
+    </string-array>
+    <string-array name="quickspace_background_values" translatable="false">
+        <item>none</item>
+        <item>lighter</item>
+        <item>light</item>
+        <item>dark</item>
+        <item>darker</item>
+        <item>theme</item>
+    </string-array>
 </resources>

@@ -237,6 +237,15 @@ public class SettingsHomescreen extends SettingsActivity implements PreferenceFr
                     return true;
                 }
             });
+
+            ListPreference quickspaceBG = (ListPreference) findPreference(Utilities.PREF_QUICKSPACE_BG);
+            quickspaceBG.setSummary(quickspaceBG.getEntry());
+            quickspaceBG.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    LauncherAppState.getInstanceNoCreate().setNeedsRestart();
+                    return true;
+                }
+            });
         }
 
         @Override
