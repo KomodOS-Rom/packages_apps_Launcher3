@@ -390,7 +390,7 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                     view.setBackgroundResource(bgDrawable);
                     view.setPadding(bgPadWid,bgPadHei,bgPadWid,bgPadHei);
                     if (bgDrawable != 0) {
-                        mWeatherContent.setPadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, getContext().getResources().getDimensionPixelSize(R.dimen.quickspace_no_divider_padding), getContext().getResources().getDisplayMetrics()),0,0,0);
+                        mWeatherContent.setMargin((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, getContext().getResources().getDimensionPixelSize(R.dimen.quickspace_no_divider_padding), getContext().getResources().getDisplayMetrics()),0,0,0);
                     }
                 }
                 if (mWeatherContent != null) {
