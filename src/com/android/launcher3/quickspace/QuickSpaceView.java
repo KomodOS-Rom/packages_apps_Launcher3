@@ -143,7 +143,7 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
         if (forced) {
             mClockView.reloadDateFormat();
         }
-        if (!Utilities.getQuickspaceBackground(getContext()) == "none") {
+        if (Utilities.getQuickspaceBackground(getContext()) != "none") {
             mTitleSeparator.setVisibility(View.INVISIBLE);
         } else {
             mTitleSeparator.setVisibility(mWeatherAvailable ?  View.VISIBLE : View.GONE);
