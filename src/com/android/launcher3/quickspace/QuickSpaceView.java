@@ -142,7 +142,7 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
         if (forced) {
             mClockView.reloadDateFormat();
         }
-        if (Utilities.getQuickspaceBackground(getContext()) == "none") {
+        if (!Utilities.getQuickspaceBackground(getContext()) == "none") {
             mTitleSeparator.setVisibility(View.INVISIBLE);
         } else {
             mTitleSeparator.setVisibility(mWeatherAvailable ?  View.VISIBLE : View.GONE);
@@ -352,28 +352,28 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                 break;
         }
 
-        String bgDrawable;
+        int bgDrawable;
         switch (Utilities.getQuickspaceBackground(getContext())) {
             case "none":
-                bgDrawable = "0";
+                bgDrawable = 0;
                 break;
             case "lighter":
-                bgDrawable = "R.drawable.glance_bg_lighter";
+                bgDrawable = R.drawable.glance_bg_lighter;
                 break;
             case "light":
-                bgDrawable = "R.drawable.glance_bg_light";
+                bgDrawable = R.drawable.glance_bg_light;
                 break;
             case "dark":
-                bgDrawable = "R.drawable.glance_bg_dark";
+                bgDrawable = R.drawable.glance_bg_dark;
                 break;
             case "darker":
-                bgDrawable = "R.drawable.glance_bg_darker";
+                bgDrawable = R.drawable.glance_bg_darker;
                 break;
             case "theme":
-                bgDrawable = "R.drawable.glance_bg_systemtheme";
+                bgDrawable = R.drawable.glance_bg_systemtheme;
                 break;
             default:
-                bgDrawable = "0";
+                bgDrawable = 0;
                 break;
         }
 
