@@ -144,7 +144,7 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
             mClockView.reloadDateFormat();
         }
         if (Utilities.getQuickspaceBackground(getContext()) != "none") {
-            mTitleSeparator.setVisibility(View.INVISIBLE);
+            mTitleSeparator.setVisibility(View.GONE);
         } else {
             mTitleSeparator.setVisibility(mWeatherAvailable ?  View.VISIBLE : View.GONE);
         }
@@ -389,7 +389,10 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                 if (view != mWeatherTemp || view != mWeatherTempSub) {
                     view.setBackgroundResource(bgDrawable);
                     view.setPadding(bgPadWid,bgPadHei,bgPadWid,bgPadHei);
-                } 
+                    if (bgDrawable != 0) {
+                        mWeatherContent.setPadding((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, getContext().getResources().getDimensionPixelSize(R.dimen.quickspace_no_divider_padding), getContext().getResources().getDisplayMetrics()),0,0,0)
+                    }
+                }
                 if (mWeatherContent != null) {
                     mWeatherContent.setBackgroundResource(bgDrawable);
                     mWeatherContent.setPadding(bgPadWid,bgPadHei,bgPadWid,bgPadHei);

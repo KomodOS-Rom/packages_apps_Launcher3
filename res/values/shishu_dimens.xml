@@ -38,6 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <dimen name="task_corner_radius_op">16dp</dimen>
 
     <!-- Quickspace background -->
-    <dimen name="quickspace_bg_extra_width">4dp</dimen>
-    <dimen name="quickspace_bg_extra_height">2dp</dimen>
+    <dimen name="quickspace_no_divider_padding">4dp</dimen>
+    <dimen name="quickspace_bg_extra_width">8dp</dimen>
+    <dimen name="quickspace_bg_extra_height">4dp</dimen>
 </resources>
