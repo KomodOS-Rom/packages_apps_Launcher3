@@ -39,6 +39,7 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -383,7 +384,16 @@ public class QuickSpaceView extends FrameLayout implements AnimatorUpdateListene
                 view.setAllCaps(Utilities.isDateStyleUppercase(getContext()));
                 view.setLetterSpacing(Utilities.getDateStyleTextSpacing(getContext()));
                 view.setTextColor(color);
-                view.setBackgroundResource(bgDrawable);
+                int bgPadWid = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, getContext().getResources().getDimensionPixelSize(R.dimen.quickspace_bg_extra_width), getContext().getResources().getDisplayMetrics());
+                int bgPadHei = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, getContext().getResources().getDimensionPixelSize(R.dimen.quickspace_bg_extra_height), getContext().getResources().getDisplayMetrics());
+                if (view != mWeatherTemp || view != mWeatherTempSub) {
+                    view.setBackgroundResource(bgDrawable);
+                    view.setPadding(bgPadWid,bgPadHei,bgPadWid,bgPadHei);
+                } 
+                if (mWeatherContent != null) {
+                    mWeatherContent.setBackgroundResource(bgDrawable);
+                    mWeatherContent.setPadding(bgPadWid,bgPadHei,bgPadWid,bgPadHei);
+                }
             }
         }
     }
