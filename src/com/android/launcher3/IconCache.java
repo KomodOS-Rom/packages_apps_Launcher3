@@ -434,7 +434,7 @@ public class IconCache {
             if (iconDrawable == null) {
                 iconDrawable = getFullResIcon(app);
             }
-            if (isDefaultIconPack()) {
+            if (isDefaultIconPack() && Utilities.forceLegacyIconMask(mContext)) {
                 li.createBadgedIconBitmap(iconDrawable, app.getUser(),
                         app.getApplicationInfo().targetSdkVersion).applyTo(entry);
             } else {
@@ -610,7 +610,7 @@ public class IconCache {
                     if (iconDrawable == null) {
                         iconDrawable = getFullResIcon(info);
                     }
-                    if (isDefaultIconPack()) {
+                    if (isDefaultIconPack() && Utilities.forceLegacyIconMask(mContext)) {
                         li.createBadgedIconBitmap(iconDrawable, info.getUser(),
                                 info.getApplicationInfo().targetSdkVersion).applyTo(entry);
                     } else {
@@ -722,7 +722,7 @@ public class IconCache {
                         iconDrawable = appInfo.loadIcon(mPackageManager);
                     }
                     BitmapInfo iconInfo = null;
-                    if (isDefaultIconPack()) {
+                    if (isDefaultIconPack() && Utilities.forceLegacyIconMask(mContext)) {
                         iconInfo = li.createBadgedIconBitmap(
                                 iconDrawable, user, appInfo.targetSdkVersion,
                                 mInstantAppResolver.isInstantApp(appInfo));
