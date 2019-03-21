@@ -198,4 +198,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <item>2</item>
     </string-array>
 
+    <!-- Icon shape mask bg color -->
+    <string-array name="adaptive_icon_background_names">
+        <item>@string/adaptive_icon_background_default</item>
+        <item>@string/adaptive_icon_background_theme</item>
+        <item>@string/adaptive_icon_background_adaptive</item>
+    </string-array>
+
+    <string-array translatable="false" name="adaptive_icon_background_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>

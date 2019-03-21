@@ -49,11 +49,13 @@
             android:defaultValue="false"
             android:persistent="true"/>
 
-        <SwitchPreference
-            android:key="pref_generated_adaptive_background"
-            android:title="@string/generate_adaptive_background_title"
-            android:summary="@string/generate_adaptive_background_summary"
-            android:defaultValue="false"
+        <ListPreference
+            android:key="pref_icon_shape_background_color"
+            android:title="@string/adaptive_icon_background_title"
+            android:summary="%s"
+            android:entries="@array/adaptive_icon_background_names"
+            android:entryValues="@array/adaptive_icon_background_values"
+            android:defaultValue="0"
             android:persistent="true" />
 
     </PreferenceCategory>

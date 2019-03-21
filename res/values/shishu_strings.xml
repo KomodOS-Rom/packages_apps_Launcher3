@@ -54,8 +54,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    <string name="legacy_icon_mask_title">Force shape mask on legacy icons</string>
    <string name="legacy_icon_mask_summary">Could cause issue with custom icon packs, if enabled</string>
 
-   <string name="generate_adaptive_background_title">Extract color from legacy icon</string>
-   <string name="generate_adaptive_background_summary">For generated adaptive icon backgrounds</string>
+   <!-- Icon shape background color -->
+   <string name="adaptive_icon_background_title">Icon shape mask color</string>
+   <string name="adaptive_icon_background_default">White</string>
+   <string name="adaptive_icon_background_theme">Based on theme</string>
+   <string name="adaptive_icon_background_adaptive">Based on icon colors</string>
 
     <!-- Icon size -->
     <string name="icon_size_title">Icon size</string>

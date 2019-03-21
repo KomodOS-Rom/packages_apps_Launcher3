@@ -62,7 +62,7 @@ import com.android.launcher3.util.Themes;
  */
 public class LauncherIcons implements AutoCloseable {
 
-    private static final int DEFAULT_WRAPPER_BACKGROUND = Color.WHITE;
+    private static int DEFAULT_WRAPPER_BACKGROUND;
 
     public static final Object sPoolSync = new Object();
     private static LauncherIcons sPool;
@@ -266,11 +266,22 @@ public class LauncherIcons implements AutoCloseable {
                 scale = getNormalizer().getScale(icon, outIconBounds, null, null);
 
                 Drawable background = dr.getBackground();
-                if (Utilities.generateAdaptiveBackground(mContext)) {
-                    Bitmap bitmap = Utilities.drawableToBitmap(dr.getForeground());
-                    background.setTint(Utilities.extractAdaptiveBackgroundFromBitmap(bitmap));
-                } else {
-                    ((ColorDrawable)background).setColor(mWrapperBackgroundColor);
+                switch (Utilities.getIconShapeBackgroundColor(mContext)){
+                    case "1":
+                        DEFAULT_WRAPPER_BACKGROUND = Themes.getAttrColor(mContext, R.attr.allAppsScrimColor);
+                        ((ColorDrawable)background).setColor(mWrapperBackgroundColor);
+                        break;
+                    case "2":
+                        // Reset to white
+                        DEFAULT_WRAPPER_BACKGROUND = Color.WHITE;
+                        Bitmap bitmap = Utilities.drawableToBitmap(dr.getForeground());
+                        background.setTint(Utilities.extractAdaptiveBackgroundFromBitmap(bitmap));
+                        break;
+                    case "0":
+                    default:
+                        DEFAULT_WRAPPER_BACKGROUND = Color.WHITE;
+                        ((ColorDrawable)background).setColor(mWrapperBackgroundColor);
+                        break;
                 }
 
             }

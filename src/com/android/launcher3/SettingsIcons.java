@@ -50,7 +50,7 @@ public class SettingsIcons extends SettingsActivity implements PreferenceFragmen
 
     private static final String ICON_BADGING_PREFERENCE_KEY = "pref_icon_badging";
     static final String KEY_PREF_LEGACY_ICON_MASK = "pref_legacy_icon_mask";
-    static final String KEY_GENERATED_ADAPTIVE_BACKGROUND = "pref_generated_adaptive_background";
+    static final String KEY_ICON_SHAPE_BG_COLOR = "pref_icon_shape_background_color";
 
     /** Hidden field Settings.Secure.NOTIFICATION_BADGING */
     public static final String NOTIFICATION_BADGING = "notification_badging";
@@ -131,22 +131,15 @@ public class SettingsIcons extends SettingsActivity implements PreferenceFragmen
                 }
             });
 
-            final SwitchPreference legacyIconMaskPref =
-                    (SwitchPreference) findPreference(KEY_PREF_LEGACY_ICON_MASK);
-            final SwitchPreference generateAdaptiveBackgroundPref =
-                    (SwitchPreference) findPreference(KEY_GENERATED_ADAPTIVE_BACKGROUND);
-            if (!Utilities.ATLEAST_OREO) {
-                getPreferenceScreen().removePreference(legacyIconMaskPref);
-                getPreferenceScreen().removePreference(generateAdaptiveBackgroundPref);
-            } else {
-                generateAdaptiveBackgroundPref.setEnabled(legacyIconMaskPref.isChecked());
-                legacyIconMaskPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        generateAdaptiveBackgroundPref.setEnabled((Boolean) newValue);
-                        return true;
-                    }
-                });
-            }
+            final ListPreference iconShapeBgColor = (ListPreference) findPreference(KEY_ICON_SHAPE_BG_COLOR);
+            iconShapeBgColor.setSummary(iconShapeBgColor.getEntry());
+            iconShapeBgColor.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    int index = iconShapeBgColor.findIndexOfValue((String) newValue);
+                    iconShapeBgColor.setSummary(iconShapeBgColor.getEntries()[index]);
+                    return true;
+                }
+            });
 
         }
 

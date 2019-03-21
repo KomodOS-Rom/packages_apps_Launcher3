@@ -209,9 +209,8 @@ public final class Utilities {
         return prefs.getBoolean(SettingsIcons.KEY_PREF_LEGACY_ICON_MASK, false);
     }
 
-    public static boolean generateAdaptiveBackground(Context context) {
-        SharedPreferences prefs = getPrefs(context.getApplicationContext());
-        return prefs.getBoolean(SettingsIcons.KEY_GENERATED_ADAPTIVE_BACKGROUND, false);
+    public static String getIconShapeBackgroundColor(Context context) {
+        return getPrefs(context).getString(SettingsIcons.KEY_ICON_SHAPE_BG_COLOR, "0");
     }
 
     public static boolean showWorkspaceGradient(Context context) {
