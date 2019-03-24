@@ -33,7 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class HiddenAppsActivity extends Activity implements MultiSelectRecyclerViewAdapter.ItemClickListener {
+public class HideAndProtectAppsActivity extends Activity implements MultiSelectRecyclerViewAdapter.ItemClickListener {
 
     private List<ResolveInfo> mInstalledPackages;
     private ActionBar mActionBar;
@@ -61,7 +61,7 @@ public class HiddenAppsActivity extends Activity implements MultiSelectRecyclerV
     }
 
     private void unhideHiddenApps() {
-        mAdapter.removeSelectionsToHideList(HiddenAppsActivity.this);
+        mAdapter.removeSelectionsToHideList(HideAndProtectAppsActivity.this);
         // mSelections is now cleared, let's notify that our data set has changed
         mAdapter.notifyDataSetChanged();
         // update the title
@@ -79,7 +79,7 @@ public class HiddenAppsActivity extends Activity implements MultiSelectRecyclerV
         mActionBar = getActionBar();
         if (mActionBar != null) mActionBar.setDisplayHomeAsUpEnabled(true);
 
-        Set<String> hiddenApps = PreferenceManager.getDefaultSharedPreferences(HiddenAppsActivity.this).getStringSet(Utilities.KEY_HIDDEN_APPS_SET, null);
+        Set<String> hiddenApps = PreferenceManager.getDefaultSharedPreferences(HideAndProtectAppsActivity.this).getStringSet(Utilities.KEY_HIDDEN_APPS_SET, null);
         if (hiddenApps != null) {
             if (!hiddenApps.isEmpty()) {
                 mActionBar.setTitle(String.valueOf(hiddenApps.size()) + getString(R.string.hide_app_selected));
@@ -91,15 +91,15 @@ public class HiddenAppsActivity extends Activity implements MultiSelectRecyclerV
         mInstalledPackages = getInstalledApps();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(HiddenAppsActivity.this, LinearLayoutManager.VERTICAL, false));
-        mAdapter = new MultiSelectRecyclerViewAdapter(HiddenAppsActivity.this, mInstalledPackages, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(HideAndProtectAppsActivity.this, LinearLayoutManager.VERTICAL, false));
+        mAdapter = new MultiSelectRecyclerViewAdapter(HideAndProtectAppsActivity.this, mInstalledPackages, this);
         recyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void onItemClicked(int position) {
         mAdapter.toggleSelection(mActionBar, position);
-        mAdapter.addSelectionsToHideList(HiddenAppsActivity.this);
+        mAdapter.addSelectionsToHideList(HideAndProtectAppsActivity.this);
         // force a model reload on every change, this avoids a full restart
         LauncherAppState appState = LauncherAppState.getInstanceNoCreate();
         if (appState != null) {
